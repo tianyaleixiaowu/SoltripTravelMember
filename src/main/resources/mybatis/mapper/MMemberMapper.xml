@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.s.t.m.project.dao.MMemberMapper">
+  <resultMap id="BaseResultMap" type="com.s.t.m.project.entity.MMember">
+    <id column="CardNum" jdbcType="CHAR" property="cardnum" />
+    <result column="RealName" jdbcType="VARCHAR" property="realname" />
+    <result column="UserPwd" jdbcType="VARCHAR" property="userpwd" />
+    <result column="Gender" jdbcType="TINYINT" property="gender" />
+    <result column="Country" jdbcType="VARCHAR" property="country" />
+    <result column="MemberClass" jdbcType="VARCHAR" property="memberclass" />
+    <result column="MemberType" jdbcType="VARCHAR" property="membertype" />
+    <result column="Nation" jdbcType="VARCHAR" property="nation" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="PaperNum" jdbcType="VARCHAR" property="papernum" />
+    <result column="CellPhone" jdbcType="VARCHAR" property="cellphone" />
+    <result column="BackupCellPhone" jdbcType="VARCHAR" property="backupcellphone" />
+    <result column="PhoneNum" jdbcType="VARCHAR" property="phonenum" />
+    <result column="Birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="PassengerName" jdbcType="VARCHAR" property="passengername" />
+    <result column="AdministrativeLevel" jdbcType="VARCHAR" property="administrativelevel" />
+    <result column="JobTitle" jdbcType="VARCHAR" property="jobtitle" />
+    <result column="IsSecretary" jdbcType="VARCHAR" property="issecretary" />
+    <result column="CompanyID" jdbcType="VARCHAR" property="companyid" />
+    <result column="DepartmentID" jdbcType="INTEGER" property="departmentid" />
+    <result column="PersonnelType" jdbcType="VARCHAR" property="personneltype" />
+    <result column="MemberFrom" jdbcType="VARCHAR" property="memberfrom" />
+    <result column="HRCode" jdbcType="VARCHAR" property="hrcode" />
+    <result column="IsEnable" jdbcType="BIT" property="isenable" />
+    <result column="TicketOfficeID" jdbcType="INTEGER" property="ticketofficeid" />
+    <result column="CreateUserID" jdbcType="VARCHAR" property="createuserid" />
+    <result column="CreateRealName" jdbcType="VARCHAR" property="createrealname" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CardNum, RealName, UserPwd, Gender, Country, MemberClass, MemberType, Nation, Email, 
+    PaperNum, CellPhone, BackupCellPhone, PhoneNum, Birthday, Position, PassengerName, 
+    AdministrativeLevel, JobTitle, IsSecretary, CompanyID, DepartmentID, PersonnelType, 
+    MemberFrom, HRCode, IsEnable, TicketOfficeID, CreateUserID, CreateRealName, CreateTime, 
+    UpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from M_Member
+    where CardNum = #{cardnum,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from M_Member
+    where CardNum = #{cardnum,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.s.t.m.project.entity.MMember">
+    insert into M_Member (CardNum, RealName, UserPwd, 
+      Gender, Country, MemberClass, 
+      MemberType, Nation, Email, 
+      PaperNum, CellPhone, BackupCellPhone, 
+      PhoneNum, Birthday, Position, 
+      PassengerName, AdministrativeLevel, JobTitle, 
+      IsSecretary, CompanyID, DepartmentID, 
+      PersonnelType, MemberFrom, HRCode, 
+      IsEnable, TicketOfficeID, CreateUserID, 
+      CreateRealName, CreateTime, UpdateTime
+      )
+    values (#{cardnum,jdbcType=CHAR}, #{realname,jdbcType=VARCHAR}, #{userpwd,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=TINYINT}, #{country,jdbcType=VARCHAR}, #{memberclass,jdbcType=VARCHAR}, 
+      #{membertype,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{papernum,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR}, #{backupcellphone,jdbcType=VARCHAR}, 
+      #{phonenum,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{position,jdbcType=VARCHAR}, 
+      #{passengername,jdbcType=VARCHAR}, #{administrativelevel,jdbcType=VARCHAR}, #{jobtitle,jdbcType=VARCHAR}, 
+      #{issecretary,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, 
+      #{personneltype,jdbcType=VARCHAR}, #{memberfrom,jdbcType=VARCHAR}, #{hrcode,jdbcType=VARCHAR}, 
+      #{isenable,jdbcType=BIT}, #{ticketofficeid,jdbcType=INTEGER}, #{createuserid,jdbcType=VARCHAR}, 
+      #{createrealname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.s.t.m.project.entity.MMember">
+    insert into M_Member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cardnum != null">
+        CardNum,
+      </if>
+      <if test="realname != null">
+        RealName,
+      </if>
+      <if test="userpwd != null">
+        UserPwd,
+      </if>
+      <if test="gender != null">
+        Gender,
+      </if>
+      <if test="country != null">
+        Country,
+      </if>
+      <if test="memberclass != null">
+        MemberClass,
+      </if>
+      <if test="membertype != null">
+        MemberType,
+      </if>
+      <if test="nation != null">
+        Nation,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="papernum != null">
+        PaperNum,
+      </if>
+      <if test="cellphone != null">
+        CellPhone,
+      </if>
+      <if test="backupcellphone != null">
+        BackupCellPhone,
+      </if>
+      <if test="phonenum != null">
+        PhoneNum,
+      </if>
+      <if test="birthday != null">
+        Birthday,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="passengername != null">
+        PassengerName,
+      </if>
+      <if test="administrativelevel != null">
+        AdministrativeLevel,
+      </if>
+      <if test="jobtitle != null">
+        JobTitle,
+      </if>
+      <if test="issecretary != null">
+        IsSecretary,
+      </if>
+      <if test="companyid != null">
+        CompanyID,
+      </if>
+      <if test="departmentid != null">
+        DepartmentID,
+      </if>
+      <if test="personneltype != null">
+        PersonnelType,
+      </if>
+      <if test="memberfrom != null">
+        MemberFrom,
+      </if>
+      <if test="hrcode != null">
+        HRCode,
+      </if>
+      <if test="isenable != null">
+        IsEnable,
+      </if>
+      <if test="ticketofficeid != null">
+        TicketOfficeID,
+      </if>
+      <if test="createuserid != null">
+        CreateUserID,
+      </if>
+      <if test="createrealname != null">
+        CreateRealName,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cardnum != null">
+        #{cardnum,jdbcType=CHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="memberclass != null">
+        #{memberclass,jdbcType=VARCHAR},
+      </if>
+      <if test="membertype != null">
+        #{membertype,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="papernum != null">
+        #{papernum,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="backupcellphone != null">
+        #{backupcellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null">
+        #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="passengername != null">
+        #{passengername,jdbcType=VARCHAR},
+      </if>
+      <if test="administrativelevel != null">
+        #{administrativelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="issecretary != null">
+        #{issecretary,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="personneltype != null">
+        #{personneltype,jdbcType=VARCHAR},
+      </if>
+      <if test="memberfrom != null">
+        #{memberfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="hrcode != null">
+        #{hrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null">
+        #{isenable,jdbcType=BIT},
+      </if>
+      <if test="ticketofficeid != null">
+        #{ticketofficeid,jdbcType=INTEGER},
+      </if>
+      <if test="createuserid != null">
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createrealname != null">
+        #{createrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.s.t.m.project.entity.MMember">
+    update M_Member
+    <set>
+      <if test="realname != null">
+        RealName = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        UserPwd = #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        Gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="country != null">
+        Country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="memberclass != null">
+        MemberClass = #{memberclass,jdbcType=VARCHAR},
+      </if>
+      <if test="membertype != null">
+        MemberType = #{membertype,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        Nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="papernum != null">
+        PaperNum = #{papernum,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        CellPhone = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="backupcellphone != null">
+        BackupCellPhone = #{backupcellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null">
+        PhoneNum = #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        Birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null">
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="passengername != null">
+        PassengerName = #{passengername,jdbcType=VARCHAR},
+      </if>
+      <if test="administrativelevel != null">
+        AdministrativeLevel = #{administrativelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        JobTitle = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="issecretary != null">
+        IsSecretary = #{issecretary,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        CompanyID = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null">
+        DepartmentID = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="personneltype != null">
+        PersonnelType = #{personneltype,jdbcType=VARCHAR},
+      </if>
+      <if test="memberfrom != null">
+        MemberFrom = #{memberfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="hrcode != null">
+        HRCode = #{hrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null">
+        IsEnable = #{isenable,jdbcType=BIT},
+      </if>
+      <if test="ticketofficeid != null">
+        TicketOfficeID = #{ticketofficeid,jdbcType=INTEGER},
+      </if>
+      <if test="createuserid != null">
+        CreateUserID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createrealname != null">
+        CreateRealName = #{createrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CardNum = #{cardnum,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.s.t.m.project.entity.MMember">
+    update M_Member
+    set RealName = #{realname,jdbcType=VARCHAR},
+      UserPwd = #{userpwd,jdbcType=VARCHAR},
+      Gender = #{gender,jdbcType=TINYINT},
+      Country = #{country,jdbcType=VARCHAR},
+      MemberClass = #{memberclass,jdbcType=VARCHAR},
+      MemberType = #{membertype,jdbcType=VARCHAR},
+      Nation = #{nation,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      PaperNum = #{papernum,jdbcType=VARCHAR},
+      CellPhone = #{cellphone,jdbcType=VARCHAR},
+      BackupCellPhone = #{backupcellphone,jdbcType=VARCHAR},
+      PhoneNum = #{phonenum,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=TIMESTAMP},
+      Position = #{position,jdbcType=VARCHAR},
+      PassengerName = #{passengername,jdbcType=VARCHAR},
+      AdministrativeLevel = #{administrativelevel,jdbcType=VARCHAR},
+      JobTitle = #{jobtitle,jdbcType=VARCHAR},
+      IsSecretary = #{issecretary,jdbcType=VARCHAR},
+      CompanyID = #{companyid,jdbcType=INTEGER},
+      DepartmentID = #{departmentid,jdbcType=INTEGER},
+      PersonnelType = #{personneltype,jdbcType=VARCHAR},
+      MemberFrom = #{memberfrom,jdbcType=VARCHAR},
+      HRCode = #{hrcode,jdbcType=VARCHAR},
+      IsEnable = #{isenable,jdbcType=BIT},
+      TicketOfficeID = #{ticketofficeid,jdbcType=INTEGER},
+      CreateUserID = #{createuserid,jdbcType=VARCHAR},
+      CreateRealName = #{createrealname,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where CardNum = #{cardnum,jdbcType=CHAR}
+  </update>
+
+
+  <select id="getMemberByCellPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+	m.CardNum,
+	m.RealName,
+	m.UserPwd,
+	m.Gender,
+	m.Country,
+	m.MemberClass,
+	m.MemberType,
+	m.Nation,
+	m.Email,
+	m.PaperNum,
+	m.CellPhone,
+	m.BackupCellPhone,
+	m.PhoneNum,
+	m.Birthday,
+	m.Position,
+	m.PassengerName,
+	m.AdministrativeLevel,
+	m.JobTitle,
+	m.IsSecretary,
+	c.HROrgID AS CompanyID,
+	m.DepartmentID,
+	m.PersonnelType,
+	m.MemberFrom,
+	m.HRCode,
+	m.IsEnable,
+	m.TicketOfficeID,
+	m.CreateUserID,
+	m.CreateRealName,
+	m.CreateTime,
+	m.UpdateTime
+FROM
+	M_Member m
+LEFT JOIN M_Company AS c ON m.CompanyID = c.ID
+WHERE
+	m.CellPhone = #{cellPhone,jdbcType=CHAR}
+  </select>
+
+  <select id="getMemberByCardNum" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+	m.CardNum,
+	m.RealName,
+	m.UserPwd,
+	m.Gender,
+	m.Country,
+	m.MemberClass,
+	m.MemberType,
+	m.Nation,
+	m.Email,
+	m.PaperNum,
+	m.CellPhone,
+	m.BackupCellPhone,
+	m.PhoneNum,
+	m.Birthday,
+	m.Position,
+	m.PassengerName,
+	m.AdministrativeLevel,
+	m.JobTitle,
+	m.IsSecretary,
+	c.HROrgID AS CompanyID,
+	m.DepartmentID,
+	m.PersonnelType,
+	m.MemberFrom,
+	m.HRCode,
+	m.IsEnable,
+	m.TicketOfficeID,
+	m.CreateUserID,
+	m.CreateRealName,
+	m.CreateTime,
+	m.UpdateTime
+FROM
+	M_Member m
+LEFT JOIN M_Company AS c ON m.CompanyID = c.ID
+    where m.CardNum = #{cardNum,jdbcType=CHAR}
+  </select>
+
+  <update id="ModifyPassword" parameterType="java.lang.String">
+    update M_Member
+    set UserPwd = #{newPassword,jdbcType=VARCHAR}
+    where CellPhone = #{cellPhone,jdbcType=CHAR}
+
+  </update>
+
+  <select id="searchEmployee" parameterType="com.s.t.m.project.entity.api.APISearchParam" resultType="com.s.t.m.project.entity.api.User">
+    SELECT
+	a.CardNum AS userID,
+	a.HRCode AS employeeID,
+	c.HROrgID AS corpCode,
+	a.RealName AS cnName,
+	a.Gender AS gender,
+	a.AdministrativeLevel AS jobClass,
+	c.CompanyName AS corpName,
+	d.DepartmentName AS deptName,
+	a.CellPhone AS mobile,
+	a.Email AS email
+FROM
+	M_Member AS a
+	LEFT JOIN M_Company AS c ON a.CompanyID = c.ID
+	LEFT JOIN M_CompanyDepartment AS d ON d.ID = a.DepartmentID
+	INNER JOIN M_MemberBalanceCompany AS e ON a.CardNum = e.CardNum
+	AND e.CompanyID = #{feeUnitID}
+    <where>
+      <if test="name != null and name != ''"> OR a.RealName LIKE #{name} </if>
+      <if test="employeeID != null and employeeID != ''"> OR a.HRCode LIKE #{employeeID} </if>
+      <if test="mobile != null and mobile != ''"> OR a.CellPhone LIKE #{mobile} </if>
+    </where>
+    LIMIT #{maxNum}
+  </select>
+
+<select id="getMemberFullInfoByCardNum" resultType="com.s.t.m.project.entity.api.APIGetInfoResult" parameterType="java.lang.String">
+SELECT
+	Birthday AS birthday,
+	m.Country AS nation,
+	PaperNum AS enFirstName,
+	MemberType AS enLastName,
+	m.CardNum AS userID,
+	m.HRCode AS employeeID,
+	c.HROrgID AS corpCode,
+	m.RealName AS cnName,
+CASE
+	WHEN m.Gender = 0 THEN
+	'F' ELSE 'M'
+	END AS gender,
+	m.Position AS jobClass,
+	c.CompanyName AS corpName,
+	cd.DepartmentName AS deptName,
+	m.CellPhone AS mobile,
+	m.Email AS email
+FROM
+	M_Member m
+	LEFT JOIN M_Company c ON c.ID = m.CompanyID
+	LEFT JOIN M_CompanyDepartment cd ON cd.ID = m.DepartmentID
+WHERE
+	m.CardNum = #{cardNum,jdbcType=CHAR}
+AND m.IsEnable = 1
+
+</select>
+
+  <select id="getBalanceCompanyByCardNum" parameterType="java.lang.String" resultType="com.s.t.m.project.entity.api.FeeUnit">
+	SELECT
+	c.HROrgID AS feeUnitID,
+	bc.CompanyName AS feeUnitName
+FROM
+	M_MemberBalanceCompany bc
+LEFT JOIN M_Company c ON c.ID = bc.CompanyID
+WHERE
+	bc.CardNum = #{cardNum,jdbcType=CHAR}
+  </select>
+
+<select id="getMemberTravelLevel" resultType="com.s.t.m.project.entity.MCompanytravelsetting" parameterType="java.lang.String">
+  SELECT
+  *
+  FROM
+  M_CompanyTravelSetting
+  WHERE
+  TravelLevelID IN (
+  SELECT TravelLevelID FROM M_MemberBalanceCompany WHERE CardNum = #{cardNum} AND CompanyID = #{companyID} AND IsEnable = 1
+  )
+</select>
+
+  <select id="getMemberHotelFee" resultType="com.s.t.m.project.entity.api.HotelFee">
+
+    SELECT
+    CityID,
+    HotelFeeValue,
+    Currency
+    FROM
+    V_HotelFee
+    WHERE
+    TravelLevelID = #{travelLevelID}
+    AND CityID IN
+    <foreach collection="cityList" item="item" index="index"
+             open="(" separator="," close=")">#{item}
+    </foreach>
+  </select>
+
+  <select id="isExistMemberBalanceCompany" resultType="int">
+    SELECT
+    COUNT( 0 )
+    FROM
+    M_MemberBalanceCompany
+    WHERE
+    CompanyID = #{companyID}
+    AND CardNum = #{cardNum}
+  </select>
+
+  <select id="isDeptApprove" resultType="com.s.t.m.project.entity.ApproveStatus" parameterType="java.lang.String">
+    SELECT
+    m.DepartmentID,
+    c.ID AS CompanyID,
+    d.IsDeptApprove,
+    d.ApproveType AS DeptApproveType,
+    c.ApproveType AS ComApproveType,
+    !ISNULL(mbc.ID) AS IsNoApprove
+    FROM
+    M_Member m
+    LEFT JOIN M_CompanyDepartment d ON d.ID = m.DepartmentID
+    LEFT JOIN M_Company c ON c.ID = #{bCompanyID}
+    LEFT JOIN M_MemberBalanceCompanySetting mbc ON mbc.CompanyID = #{bCompanyID}
+                AND mbc.CardNum = #{cardNum} AND mbc.RightKey = '9'
+    WHERE
+    m.CardNum = #{cardNum}
+  </select>
+<select id="getDepartmenApprover" resultType="com.s.t.m.project.entity.api.User" parameterType="java.lang.String">
+  SELECT
+  ApprovalSort AS `NO`,
+  m.CardNum AS UserID,
+  m.HRCode AS EmployeeID,
+  c.HROrgID AS CorpCode,
+  m.RealName AS CnName,
+  CASE
+
+  WHEN m.Gender = 0 THEN
+  'F' ELSE 'M'
+  END AS Gender,
+  m.Position AS JobClass,
+  c.CompanyName AS CorpName,
+  cd.DepartmentName AS DeptName,
+  m.CellPhone AS Mobile,
+  m.Email AS Email
+  FROM
+  M_CompanyDepartmentApprover cda
+  LEFT JOIN M_Member m ON m.CardNum = cda.CardNum
+  LEFT JOIN M_Company c ON c.ID = m.CompanyID
+  LEFT JOIN M_CompanyDepartment cd ON cd.ID = m.DepartmentID
+  WHERE
+  cda.DepartmentID = #{deptID}
+  AND cda.IsEnable = 1
+
+</select>
+
+  <select id="getCompanyApprover" resultType="com.s.t.m.project.entity.api.User" parameterType="java.lang.String">
+    SELECT
+    ApprovalSort AS `NO`,
+    m.CardNum AS UserID,
+    m.HRCode AS EmployeeID,
+    c.HROrgID AS CorpCode,
+    m.RealName AS CnName,
+    CASE
+
+    WHEN m.Gender = 0 THEN
+    'F' ELSE 'M'
+    END AS Gender,
+    m.Position AS JobClass,
+    c.CompanyName AS CorpName,
+    cd.DepartmentName AS DeptName,
+    m.CellPhone AS Mobile,
+    m.Email AS Email
+    FROM
+    M_CompanyApprover ca
+    LEFT JOIN M_Member m ON m.CardNum = ca.CardNum
+    LEFT JOIN M_Company c ON c.ID = m.CompanyID
+    LEFT JOIN M_CompanyDepartment cd ON cd.ID = m.DepartmentID
+    WHERE
+    ca.CompanyID = #{companyID}
+    AND ca.IsEnable = 1
+  </select>
+
+  <select id="getSurplusBudget" resultType="java.math.BigDecimal">
+    SELECT
+    SurplusCost
+    FROM
+    M_CompanyBudget
+    WHERE
+    CompanyID = #{companyID}
+    AND #{nowDT} BETWEEN StartDate
+    AND EndDate
+  </select>
+
+  <select id="getCompanyID" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT ID FROM M_Company WHERE HROrgID = #{orgID}
+  </select>
+
+<select id="getUnitAccountCodeList" resultType="com.s.t.m.project.entity.api.UnitAccountPair">
+  SELECT HROrgID AS unitID,accountBookCode  FROM M_Company WHERE HROrgID IN
+  <foreach collection="companyIDList" item="item" index="index"
+           open="(" separator="," close=")">#{item}
+  </foreach>
+</select>
+
+  <select id="getCardNumByHRCode" parameterType="com.s.t.m.project.entity.api.EmployeeParm" resultType="java.lang.String">
+    SELECT
+	  m.CardNum
+    FROM
+	  M_Member m
+    INNER JOIN M_Company c ON c.ID = m.CompanyID
+    AND AccountBookCode = #{accountBookCode}
+    WHERE
+	  m.HRCode = #{employeeID}
+  </select>
+</mapper>

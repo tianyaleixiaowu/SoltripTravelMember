@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.s.t.m.sys.dao.LogMapper">
+
+	<sql id="Base_Column_List">
+		id,user_id,username,operation,time,method,params,ip,gmt_create
+	</sql>
+	<select id="getlogById" resultType="com.s.t.m.sys.entity.LogEntity">
+		select 
+		<include refid="Base_Column_List" />
+		 from sys_log where id = #{value}
+	</select>
+
+	<select id="getListLogByPageInfo" resultType="com.s.t.m.sys.entity.LogEntity" parameterType="com.s.t.m.sys.entity.LogEntity">
+		select
+		<include refid="Base_Column_List" />
+		from sys_log
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+			<if test="username != null and username != ''"> and username = #{username} </if>
+			<if test="operation != null and operation != ''"> and operation = #{operation} </if>
+			<if test="time != null and time != ''"> and time = #{time} </if>
+			<if test="method != null and method != ''"> and method = #{method} </if>
+			<if test="params != null and params != ''"> and params = #{params} </if>
+			<if test="ip != null and ip != ''"> and ip = #{ip} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		</where>
+	</select>
+
+	<insert id="saveLogList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_log (
+		`user_id`, 
+			`username`, 
+			`operation`, 
+			`time`, 
+			`method`, 
+			`params`, 
+			`ip`, 
+			`gmt_create`
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.userId}, 
+			#{item.username}, 
+			#{item.operation}, 
+			#{item.time}, 
+			#{item.method}, 
+			#{item.params}, 
+			#{item.ip}, 
+			#{item.gmtCreate}
+			)
+		</foreach>
+	</insert>
+	 
+	<insert id="saveLog" parameterType="com.s.t.m.sys.entity.LogEntity" useGeneratedKeys="true" keyProperty="id">
+			insert into sys_log
+		(
+			`user_id`, 
+			`username`, 
+			`operation`, 
+			`time`, 
+			`method`, 
+			`params`, 
+			`ip`, 
+			`gmt_create`
+		)
+		values
+		(
+			#{userId}, 
+			#{username}, 
+			#{operation}, 
+			#{time}, 
+			#{method}, 
+			#{params}, 
+			#{ip}, 
+			#{gmtCreate}
+		)
+	</insert>
+	 
+	<update id="updateLog" parameterType="com.s.t.m.sys.entity.LogEntity">
+		update sys_log 
+		<set>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="username != null">`username` = #{username}, </if>
+			<if test="operation != null">`operation` = #{operation}, </if>
+			<if test="time != null">`time` = #{time}, </if>
+			<if test="method != null">`method` = #{method}, </if>
+			<if test="params != null">`params` = #{params}, </if>
+			<if test="ip != null">`ip` = #{ip}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="removeLog" parameterType="Long">
+		delete from sys_log where id = #{value}
+	</delete>
+	
+	<delete id="batchRemoveLog">
+		delete from sys_log where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

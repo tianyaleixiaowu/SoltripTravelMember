@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<contextName>logback</contextName>
+	<!--输出到控制台 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} [%X{userId}] - %msg%n
+			</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<!--按天生成日志 error日志输出文件-->
+	<appender name="logFileError"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Prudent>true</Prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				logs/%d{yyyy-MM-dd}/error.log
+			</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%X{userId}] -%msg%n
+			</Pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<!--按天生成日志 info日志输出文件-->
+	<appender name="logFileInfo"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Prudent>true</Prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				logs/%d{yyyy-MM-dd}/info.log
+			</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%X{userId}] -%msg%n
+			</Pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印INFO日志 -->
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="logFileDebug"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Prudent>true</Prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>
+				logs/%d{yyyy-MM-dd}/debug.log
+			</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%X{userId}] -%msg%n
+			</Pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印INFO日志 -->
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+
+	<!-- sql日志 -->
+	<logger name="dao" level="DEBUG" />
+
+
+	<logger name="com.s.t.m" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="logFileError" />
+		<appender-ref ref="logFileInfo" />
+	</logger>
+
+
+	<root level="info">
+		<appender-ref ref="console" />
+		<appender-ref ref="logFileError" />
+		<appender-ref ref="logFileInfo" />
+		<appender-ref ref="logFileDebug" />
+	</root>
+
+</configuration>

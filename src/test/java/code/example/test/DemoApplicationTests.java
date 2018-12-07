@@ -43,7 +43,7 @@ public class DemoApplicationTests extends Tester{
         map.put("to",mail.getTo()[0]);
         mail.setTemplateModel(map);
         //发送
-        mailUtils.sendTemplateMail(mail);
+        //mailUtils.sendTemplateMail(mail);
         System.out.println("成功");
 	}
 //	批量接收文件示例
@@ -55,7 +55,6 @@ public class DemoApplicationTests extends Tester{
 	/**
 	 * 导出测试
 	 */
-	@Test
 	public void exportExcel() throws Exception{
 		
 		List<String> headerList = Lists.newArrayList();
@@ -92,7 +91,6 @@ public class DemoApplicationTests extends Tester{
 	/**
 	 * 导入测试
 	 */
-	@Test
 	public void importExcel() throws Exception{
 		
 		ImportExcel ei = new ImportExcel("C:\\Users\\Bai\\Desktop\\工会共青团及外包UAT&stage(含先锋党建)测试账号（全量）.xlsx", 0);
